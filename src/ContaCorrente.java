@@ -8,6 +8,7 @@ public class ContaCorrente extends Conta {
     @Override
     public boolean depositar(double valor) {
         this.setSaldo(this.getSaldo() + valor);
+        System.out.println("Valor depositado com sucesso, seu saldo é de R$" + this.getSaldo());
         return true;
     }
 
@@ -15,6 +16,7 @@ public class ContaCorrente extends Conta {
     public boolean sacar(double valor) {
         if (this.getSaldo() >= valor) {
             this.setSaldo(this.getSaldo() - valor);
+            System.out.println("Saque realizado com sucesso, seu saldo é de: R$" + this.getSaldo());
             return true;
         }
         return false;
@@ -22,10 +24,14 @@ public class ContaCorrente extends Conta {
 
     @Override
     public String toString() {
-        return "CONTA CORRENTE  " + "NOME: " + getNome() + " - " + "CPF: " + getCpf() + " NÚMERO DA CONTA: " + getNumero()
-                + " SALDO: " + getSaldo();
+        return "\nCONTA CORRENTE  " + "\nNOME: " + getNome() + "\nCPF: " + getCpf() + "\nNÚMERO DA CONTA: " + getNumero()
+                + " \nSALDO: " + getSaldo() + "\n";
     }
 
+    @Override
+    public void saldo(int conta) {
+
+    }
 }
 
 

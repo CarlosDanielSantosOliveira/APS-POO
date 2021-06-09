@@ -7,19 +7,22 @@ public class AppContas {
 
         GerenciaConta contas = new GerenciaConta();
 
-        int opcao = 0, numero = 0, saque;
+        int opcao = 0, numero = 0;
         String nome, cpf;
-        double saldo, limite;
+        double saldo, limite, valor;
 
-        while(opcao <= 6) {
-            System.out.println("Sistema bancário AnheBank");
+        while(opcao <= 8) {
+            System.out.println("SISTEMA BANCÁRIO ANHEBANK");
             System.out.println("Clique na opção que deseja realizar");
             System.out.println("1 - Abrir conta corrente");
             System.out.println("2 - Abrir conta especial");
             System.out.println("3 - Abrir conta poupança");
             System.out.println("4 - Buscar por número da conta");
             System.out.println("5 - Realizar saque");
-            System.out.println("7 - Sair");
+            System.out.println("6 - Realizar depósito");
+            System.out.println("7 - Listar todas as contas");
+            System.out.println("8 - Buscar o Saldo");
+            System.out.println("9 - Sair");
 
             opcao = sc.nextInt();
 
@@ -29,7 +32,7 @@ public class AppContas {
                     nome = sc.next();
                     System.out.println("Digite seu CPF: ");
                     cpf = sc.next();
-                    System.out.println("O numero de sua conta é: ");
+                    System.out.println("O número de sua conta é: ");
                     numero++;
                     System.out.println(numero);
                     System.out.println("Informe o valor que deseja depositar: ");
@@ -82,24 +85,45 @@ public class AppContas {
                     numero = sc.nextInt();
                     System.out.println(contas.buscarNumeroConta(numero));
 
-                break;
+                    break;
 
                 case 5:
                     System.out.println("Qual número da conta que deseja sacar ?");
                     numero = sc.nextInt();
                     System.out.println("Qual o valor que deseja sacar ?");
-                    saque = sc.nextInt();
+                    valor = sc.nextInt();
 
-                    if (contas.saque(numero, saque)) {
-                        System.out.println("O valor do seu saque foi de R$" + saque + " e foi realizado com sucesso");
-                        System.out.println("Saque realizado na conta: " + numero);
-                    }else {
-                        System.out.println("Erro, saldo insuficiente");
-                    }
+                    contas.saque(numero, valor);
 
                     break;
+
+                case 6:
+                    System.out.println("Qual o número da conta que deseja depositar ?");
+                    numero = sc.nextInt();
+                    System.out.println("Qual valor que deseja depositar ?");
+                    valor = sc.nextDouble();
+
+                    contas.depositar(numero, valor);
+
+                    break;
+
+                case 7:
+                    System.out.println(contas.listarContas());
+                    break;
+
+                case 8:
+                    System.out.println("Qual o número da conta que deseja verificar o saldo ?");
+                    numero = sc.nextInt();
+                    contas.saldo(numero);
+                    break;
+
+                case 9:
+                    sc.close();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida, tente outra opção de 1 a 9!");
             }
         }
-
     }
 }

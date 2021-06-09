@@ -55,6 +55,14 @@ public class GerenciaConta {
         return false;
     }
 
+    public boolean depositar(int numero, double valor) {
+        Conta conta = this.buscarNumeroConta(numero);
+        if (!isNull(conta)) {
+            return conta.depositar(valor);
+        }
+        return false;
+    }
+
     //Listar todas as contas
     public String listarContas() {
         String listar = "";
@@ -69,6 +77,16 @@ public class GerenciaConta {
         return "GerenciaConta " +
                 contas;
 
+    }
+
+    //Saldo da conta
+    public void saldo(int conta) {
+        Conta verificarSaldo = this.buscarNumeroConta(conta);
+        if (!isNull(verificarSaldo)) {
+            System.out.println("O saldo da sua conta é R$" + verificarSaldo.getSaldo() + ", obrigado pela preferência, " + verificarSaldo.getNome());
+        } else {
+            System.out.println("Número de conta inexistente");
+        }
     }
 
 
